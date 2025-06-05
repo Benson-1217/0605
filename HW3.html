@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>購物車示範</title>
+</head>
+<body>
+    <button id="totalBtn" onclick="A3()">購物車總金額</button>
+    <button onclick="clearCart()">清空購物車</button>
+<p></p>
+    <img src="123.jpg" alt="商品1" />
+    <p>$150</p>
+    <button onclick="A1()">加入購物車</button>
+    <p></p>
+
+    <img src="456.jpg" alt="商品2" />
+    <p>$150</p>
+    <button onclick="A2()">加入購物車</button>
+
+    <script>
+ 
+        let total = parseInt(localStorage.getItem('total')) || 0;
+
+        function updateLocalStorage() {
+            localStorage.setItem('total', total);
+        }
+
+        function A1() {
+            total += 150;
+            updateLocalStorage();
+            console.log(  total);
+        }
+
+        function A2() {
+            total += 150;
+            updateLocalStorage();
+            console.log( total);
+        }
+
+        function A3() {
+            const btn = document.getElementById('totalBtn');
+            btn.innerText = '購物車總金額：$' + total;
+            console.log("目前總金額：" + total);
+        }
+
+        function clearCart() {
+            total = 0;
+            updateLocalStorage();
+            const btn = document.getElementById('totalBtn');
+            btn.innerText = '購物車總金額';
+            console.log("購物車已清空，總金額：$0");
+        }
+
+       
+        window.onload = () => {
+            if (total > 0) {
+                document.getElementById('totalBtn').innerText = '購物車總金額：$' + total;
+            }
+        };
+    </script>
+</body>
+</html>
